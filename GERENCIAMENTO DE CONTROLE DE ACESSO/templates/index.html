@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Ambientes</title>
+  </head>
+  <body>
+    <h1>Lista de Ambientes</h1>
+    <a href="/novo">Novo ambiente</a>
+    <ul>
+      {% for ambiente in ambientes %}
+      <li>
+        {{ ambiente.id }} - {{ ambiente.nome }} ({{ ambiente.predio }}, {{ ambiente.tipo }})
+        <a href="/deletar/{{ ambiente.id }}">Deletar</a>
+      </li>
+      {% else %}
+      <li>Nenhum ambiente cadastrado.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
