@@ -1,0 +1,42 @@
+[
+    {
+        "id": "MOD-001",
+        "name": "Controle de Acesso",
+        "description": "Identidade, usuários, perfis, permissões e ambientes",
+        "criticality": "CRITICA",
+        "requires_mfa": true,
+        "status": "ATIVO"
+    },
+    {
+        "id": "MOD-002",
+        "name": "Gerenciamento de Equipamentos",
+        "description": "Gestão de câmeras, catracas, cancelas, sensores e totens",
+        "criticality": "ALTA",
+        "requires_mfa": true,
+        "status": "PLANEJADO"
+    },
+    {
+        "id": "MOD-003",
+        "name": "Monitoramento de Ambientes",
+        "description": "Monitoramento dos prédios, estacionamento, fluxo e alertas",
+        "criticality": "CRITICA",
+        "requires_mfa": true,
+        "status": "PLANEJADO"
+    },
+    {
+        "id": "MOD-004",
+        "name": "Auditoria",
+        "description": "Registros, rastreabilidade, relatórios e conformidade",
+        "criticality": "CRITICA",
+        "requires_mfa": true,
+        "status": "PLANEJADO"
+    },
+    {
+        "id": "MOD-005",
+        "name": "Análise / Mapa de Calor",
+        "description": "BI, heatmap, análise de fluxo e inteligência comercial",
+        "criticality": "ALTA",
+        "requires_mfa": true,
+        "status": "PLANEJADO"
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "id": "PRF-001",
+        "name": "ADMIN_GLOBAL",
+        "description": "Acesso total ao sistema ARGOS",
+        "permissions": [
+            "*"
+        ]
+    },
+    {
+        "id": "PRF-002",
+        "name": "GESTOR_SEGURANCA",
+        "description": "Gestão operacional de segurança",
+        "permissions": [
+            "usuarios:read",
+            "ambientes:*",
+            "modulos:read",
+            "auditoria:read"
+        ]
+    },
+    {
+        "id": "PRF-003",
+        "name": "OPERADOR",
+        "description": "Operação diária do sistema",
+        "permissions": [
+            "usuarios:read",
+            "ambientes:read",
+            "modulos:read"
+        ]
+    },
+    {
+        "id": "PRF-004",
+        "name": "AUDITOR",
+        "description": "Consulta e auditoria",
+        "permissions": [
+            "audit:read",
+            "usuarios:read",
+            "ambientes:read"
+        ]
+    },
+    {
+        "id": "PRF-005",
+        "name": "VISITANTE",
+        "description": "Acesso limitado e temporário",
+        "permissions": []
+    }
+]
