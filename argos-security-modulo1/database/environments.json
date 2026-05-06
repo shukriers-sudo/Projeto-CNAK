@@ -1,0 +1,42 @@
+[
+    {
+        "id": "ENV-001",
+        "name": "CNAK Prédio 01",
+        "type": "PREDIO",
+        "location": "Complexo CNAK",
+        "capacity": 2500,
+        "risk_level": "ALTO",
+        "status": "ATIVO",
+        "observations": "Unidade piloto do projeto ARGOS"
+    },
+    {
+        "id": "ENV-002",
+        "name": "CNAK Prédio 02",
+        "type": "PREDIO",
+        "location": "Complexo CNAK",
+        "capacity": 2500,
+        "risk_level": "ALTO",
+        "status": "ATIVO",
+        "observations": "Unidade preparada para expansão"
+    },
+    {
+        "id": "ENV-003",
+        "name": "Estacionamento CNAK",
+        "type": "ESTACIONAMENTO",
+        "location": "Área externa",
+        "capacity": 800,
+        "risk_level": "MEDIO",
+        "status": "ATIVO",
+        "observations": "Preparado para LPR futuro"
+    },
+    {
+        "id": "ENV-004",
+        "name": "CCO - Central de Controle Operacional",
+        "type": "AREA_RESTRITA",
+        "location": "Administração CNAK",
+        "capacity": 30,
+        "risk_level": "CRITICO",
+        "status": "ATIVO",
+        "observations": "Ambiente de acesso restrito"
+    }
+]
