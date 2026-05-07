@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-panel">
+<h1>Usuários</h1><p class="subtitle">Cadastro e controle de usuários autorizados no sistema.</p>
+<form method="POST" class="form-grid">
+<input name="nome" placeholder="Nome completo" required>
+<input name="email" type="email" placeholder="E-mail corporativo" required>
+<input name="perfil" placeholder="Perfil: Admin, Operador, Visitante" required>
+<select name="status"><option>Ativo</option><option>Inativo</option></select>
+<button>Cadastrar Usuário</button>
+</form>
+<table><tr><th>ID</th><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Ação</th></tr>
+{% for i in items %}<tr><td>{{ i.id }}</td><td>{{ i.nome }}</td><td>{{ i.email }}</td><td>{{ i.perfil }}</td><td>{{ i.status }}</td><td><a href="/usuarios/excluir/{{ i.id }}">Excluir</a></td></tr>{% endfor %}
+</table>
+</section>
+{% endblock %}

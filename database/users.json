@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "nome": "rafael61739386",
+        "email": "rafael_azebrito@hotmail.com",
+        "perfil": "Admin",
+        "status": "Ativo",
+        "criado_em": "07/05/2026 19:24"
+    },
+    {
+        "id": 2,
+        "nome": "Eliana Batista Almeida",
+        "email": "balmeidaeliana@gmail.com",
+        "perfil": "Engenheira de IA",
+        "status": "Ativo",
+        "criado_em": "07/05/2026 19:25"
+    }
+]

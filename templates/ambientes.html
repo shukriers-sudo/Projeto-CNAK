@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-panel">
+<h1>Ambientes / Prédios</h1><p class="subtitle">Controle de ambientes físicos, prédios, salas, portarias e estacionamentos.</p>
+<form method="POST" class="form-grid">
+<input name="nome" placeholder="Nome do ambiente/prédio" required>
+<input name="tipo" placeholder="Tipo: Prédio, Sala, Portaria..." required>
+<input name="localizacao" placeholder="Localização" required>
+<input name="nivel_risco" placeholder="Risco: Baixo, Médio, Alto, Crítico" required>
+<select name="status"><option>Ativo</option><option>Inativo</option></select>
+<button>Cadastrar Ambiente</button>
+</form>
+<table><tr><th>ID</th><th>Ambiente</th><th>Tipo</th><th>Localização</th><th>Risco</th><th>Status</th><th>Ação</th></tr>
+{% for i in items %}<tr><td>{{ i.id }}</td><td>{{ i.nome }}</td><td>{{ i.tipo }}</td><td>{{ i.localizacao }}</td><td>{{ i.nivel_risco }}</td><td>{{ i.status }}</td><td><a href="/ambientes/excluir/{{ i.id }}">Excluir</a></td></tr>{% endfor %}
+</table>
+</section>
+{% endblock %}

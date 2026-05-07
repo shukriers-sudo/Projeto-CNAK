@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <span>MÓDULO 01</span>
+        <h1>Gerenciamento de<br>Controle de Acesso</h1>
+        <div class="accent-line"></div>
+        <p>Plataforma corporativa para gerenciamento de usuários, módulos do sistema e ambientes/prédios.</p>
+    </div>
+    <div class="hero-mark">
+        <img src="{{ url_for('static', filename='img/argos-logo.jpg') }}" alt="Argos Segurança">
+    </div>
+</section>
+<section class="cards">
+    <div class="stat-card"><div class="stat-icon">♙</div><strong>{{ total_users }}</strong><span>Usuários cadastrados</span></div>
+    <div class="stat-card"><div class="stat-icon">⬡</div><strong>{{ total_modules }}</strong><span>Módulos cadastrados</span></div>
+    <div class="stat-card"><div class="stat-icon">▥</div><strong>{{ total_environments }}</strong><span>Ambientes cadastrados</span></div>
+</section>
+<section class="features">
+    <div><b>SEGURANÇA</b><span>Proteção avançada e controle total de acessos.</span></div>
+    <div><b>EFICIÊNCIA</b><span>Processos otimizados com alta performance.</span></div>
+    <div><b>INOVAÇÃO</b><span>Tecnologia de ponta com Inteligência Artificial.</span></div>
+    <div><b>CONFIANÇA</b><span>Tradição de 50 anos protegendo o que importa.</span></div>
+</section>
+<footer>© 2026 Argos Segurança AI | CNAK Vision. Todos os direitos reservados.</footer>
+{% endblock %}

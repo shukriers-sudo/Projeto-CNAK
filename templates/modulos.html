@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-panel">
+<h1>Módulos do Sistema</h1><p class="subtitle">Controle dos módulos habilitados na plataforma.</p>
+<form method="POST" class="form-grid">
+<input name="nome" placeholder="Nome do módulo" required>
+<input name="descricao" placeholder="Descrição" required>
+<input name="nivel_acesso" placeholder="Nível de acesso" required>
+<select name="status"><option>Ativo</option><option>Inativo</option></select>
+<button>Cadastrar Módulo</button>
+</form>
+<table><tr><th>ID</th><th>Módulo</th><th>Descrição</th><th>Nível</th><th>Status</th><th>Ação</th></tr>
+{% for i in items %}<tr><td>{{ i.id }}</td><td>{{ i.nome }}</td><td>{{ i.descricao }}</td><td>{{ i.nivel_acesso }}</td><td>{{ i.status }}</td><td><a href="/modulos/excluir/{{ i.id }}">Excluir</a></td></tr>{% endfor %}
+</table>
+</section>
+{% endblock %}
