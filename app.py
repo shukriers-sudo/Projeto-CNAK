@@ -310,6 +310,16 @@ def excluir_distribuicao(item_id):
 
 
 # =========================
+# MONITORAMENTO
+# =========================
+
+@app.route("/monitoramento")
+@login_required
+def monitoramento():
+    return render_template("monitoramento.html")
+
+
+# =========================
 # EXECUÇÃO
 # =========================
 
