@@ -1,0 +1,54 @@
+from flask import Flask, render_template, request, redirect
+import json
+import os
+
+app = Flask(__name__)
+
+ARQUIVO = 'ambientes.json'
+
+def carregar():
+    if not os.path.exists(ARQUIVO):
+        return []
+    with open(ARQUIVO, 'r') as f:
+        return json.load(f)
+
+def salvar(dados):
+    with open(ARQUIVO, 'w') as f:
+        json.dump(dados, f, indent=4)
+
+# HOME
+@app.route('/')
+def index():
+    ambientes = carregar()
+    return render_template('index.html', ambientes=ambientes)
+
+# CREATE
+@app.route('/novo', methods=['GET', 'POST'])
+def novo():
+    if request.method == 'POST':
+        ambientes = carregar()
+
+        novo = {
+            "id": len(ambientes) + 1,
+            "nome": request.form['nome'],
+            "predio": request.form['predio'],
+            "tipo": request.form['tipo']
+        }
+
+        ambientes.append(novo)
+        salvar(ambientes)
+
+        return redirect('/')
+
+    return render_template('form.html')
+
+# DELETE
+@app.route('/deletar/<int:id>')
+def deletar(id):
+    ambientes = carregar()
+    ambientes = [a for a in ambientes if a['id'] != id]
+    salvar(ambientes)
+    return redirect('/')
+
+app.run(debug=True)
+

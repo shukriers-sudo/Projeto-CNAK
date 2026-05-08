@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#060608"/>
+<meta name="description" content="Argos Segurança — Visual Coach Sistema de Monitoramento"/>
+<link rel="manifest" href="/static/manifest.json"/>
+<link rel="apple-touch-icon" href="/static/icons/icon-192.png"/>
+<title>Argos — Visual Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+<!-- SCAN LINE -->
+<div class="scanline"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-area">
+    <div class="logo-mark">A</div>
+    <div class="logo-text">
+      <div class="brand">ARGOS</div>
+      <div class="sub">VISUAL COACH · v2.0</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="live-badge"><div class="live-dot"></div>AO VIVO</div>
+    <div class="clock" id="clock">--:--:--</div>
+  </div>
+</header>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  {% for p in predios %}
+  <div class="sb-item">
+    <div class="sb-dot" style="background:var(--green)"></div>
+    PRÉDIO {{ p }} · OK
+  </div>
+  {% endfor %}
+  <div class="sb-item"><div class="sb-dot" style="background:var(--green)"></div>REDE · ONLINE</div>
+  <div class="sb-item"><div class="sb-dot" style="background:var(--green)"></div>BIOMETRIA · ATIVA</div>
+  <div class="sb-item"><div class="sb-dot" style="background:var(--green)"></div>CATRACAS · 16/16</div>
+</div>
+
+<!-- TABS PRÉDIOS -->
+<div class="nav-predios">
+  <div class="tab-predio active" data-predio="todos">TODOS OS PRÉDIOS</div>
+  {% for p in predios %}
+  <div class="tab-predio" data-predio="{{ p }}">PRÉDIO {{ p }}</div>
+  {% endfor %}
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- PAINEL -->
+  <div class="page-view active" id="pg-dashboard">
+
+    <div class="alert-strip">
+      {% if criticos > 0 %}
+      <div class="alert-chip crit">⚠ {{ criticos }} AMBIENTE(S) CRÍTICO(S)</div>
+      {% endif %}
+      <div class="alert-chip warn">🔶 VERIFICAR OCUPAÇÃO DE CANTINAS</div>
+      <div class="alert-chip ok">✔ BIOMETRIA OPERACIONAL</div>
+      <div class="alert-chip ok">✔ {{ total_cameras }} CÂMERAS ATIVAS</div>
+      <div class="alert-chip ok">✔ QR CODE ONLINE</div>
+    </div>
+
+    <!-- MÉTRICAS -->
+    <div class="section-title">VISÃO GERAL</div>
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-val" id="m-pessoas">{{ total_pessoas }}</div>
+        <div class="metric-label">PESSOAS / AGORA</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">{{ total_eventos }}</div>
+        <div class="metric-label">EVENTOS HOJE</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">{{ total_cameras }}</div>
+        <div class="metric-label">CÂMERAS ATIVAS</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">4</div>
+        <div class="metric-label">PRÉDIOS ATIVOS</div>
+      </div>
+    </div>
+
+    <!-- AMBIENTES -->
+    <div class="section-title" id="sec-ambientes">AMBIENTES MONITORADOS — TODOS OS PRÉDIOS</div>
+    <div class="grid-ambientes" id="grid-amb">
+      {% for a in ambientes %}
+      <div class="card-ambiente status-{{ a.status }}"
+           data-json='{{ a | tojson }}'
+           onclick="openAmbModal(this)">
+        <span class="amb-count">#{{ loop.index0 | string | zfill(2) }}</span>
+        <span class="amb-icon">{{ a.icon }}</span>
+        <div class="amb-name">{{ a.nome }}</div>
+        <div class="amb-detail">{{ a.detalhe }}</div>
+        <div class="amb-status">
+          <div class="amb-status-dot"></div>
+          {% if a.status == 'ok' %}NORMAL
+          {% elif a.status == 'warn' %}ATENÇÃO
+          {% else %}CRÍTICO{% endif %}
+          · {{ a.pessoas }}/{{ a.cap }} pess.
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- CÂMERAS RECENTES -->
+    <div class="section-title">CÂMERAS RECENTES</div>
+    <div class="camera-grid">
+      {% for c in cameras[:4] %}
+      <div class="camera-feed" data-json='{{ c | tojson }}' onclick="openCamModal(this)">
+        <div class="cam-silhouette">{{ c.icon }}</div>
+        <div class="cam-label">{{ c.nome }}</div>
+        <div class="cam-rec"><div class="cam-rec-dot"></div>REC</div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div><!-- /pg-dashboard -->
+
+  <!-- CÂMERAS -->
+  <div class="page-view" id="pg-cameras">
+    <div class="section-title">TODAS AS CÂMERAS ({{ total_cameras }})</div>
+    <div class="camera-grid" id="all-cams">
+      {% for c in cameras %}
+      <div class="camera-feed" data-json='{{ c | tojson }}' onclick="openCamModal(this)">
+        <div class="cam-silhouette">{{ c.icon }}</div>
+        <div class="cam-label">{{ c.nome }}</div>
+        <div class="cam-rec"><div class="cam-rec-dot"></div>REC</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- EVENTOS -->
+  <div class="page-view" id="pg-eventos">
+    <div class="section-title">REGISTRO DE EVENTOS</div>
+    <div class="event-list">
+      {% for ev in eventos %}
+      <div class="event-item">
+        <div class="event-time">{{ ev.hora }}</div>
+        <div class="event-body">
+          <div class="event-title">{{ ev.titulo }}</div>
+          <div class="event-loc">{{ ev.local }}</div>
+        </div>
+        <div class="event-badge badge-{{ ev.tipo }}">
+          {% if ev.tipo == 'crit' %}CRÍTICO
+          {% elif ev.tipo == 'warn' %}ALERTA
+          {% else %}OK{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- CONFIG -->
+  <div class="page-view" id="pg-config">
+    <div class="section-title">CONFIGURAÇÕES DO SISTEMA</div>
+    <div class="metrics-row" style="margin-bottom:16px">
+      <div class="metric-card"><div class="metric-val" style="font-size:22px;color:var(--green)">ON</div><div class="metric-label">BIOMETRIA</div></div>
+      <div class="metric-card"><div class="metric-val" style="font-size:22px;color:var(--green)">ON</div><div class="metric-label">QR CODE</div></div>
+      <div class="metric-card"><div class="metric-val" style="font-size:22px;color:var(--green)">ON</div><div class="metric-label">CATRACAS</div></div>
+      <div class="metric-card"><div class="metric-val" style="font-size:22px;color:var(--green)">ON</div><div class="metric-label">ALERTAS</div></div>
+    </div>
+    <div class="event-list">
+      <div class="event-item"><div class="event-body"><div class="event-title">Gerenciar Colaboradores</div><div class="event-loc">Cadastro biométrico e permissões</div></div><div class="event-badge badge-ok">›</div></div>
+      <div class="event-item"><div class="event-body"><div class="event-title">Gerenciar Visitantes</div><div class="event-loc">QR Code, finalidade, validade</div></div><div class="event-badge badge-ok">›</div></div>
+      <div class="event-item"><div class="event-body"><div class="event-title">Gestão de Locatários</div><div class="event-loc">Lojistas, lojas e contratos</div></div><div class="event-badge badge-ok">›</div></div>
+      <div class="event-item"><div class="event-body"><div class="event-title">Centro de Segurança</div><div class="event-loc">Logs LGPD, auditoria e relatórios</div></div><div class="event-badge badge-warn">›</div></div>
+      <div class="event-item"><div class="event-body"><div class="event-title">Sobre o Sistema</div><div class="event-loc">CNAK Vision V2 · Argos Segurança</div></div><div class="event-badge" style="color:var(--text-dim)">›</div></div>
+    </div>
+    <div style="margin-top:24px;text-align:center">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim)">
+        ARGOS SEGURANÇA · CNAK VISION V2<br>
+        Servidor: <span id="server-ip">Carregando...</span><br>
+        <span id="last-update">—</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="nav-item active" onclick="goPage('dashboard',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    PAINEL
+  </div>
+  <div class="nav-item" onclick="goPage('cameras',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+    CÂMERAS
+  </div>
+  <div class="nav-item" onclick="goPage('eventos',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    EVENTOS
+  </div>
+  <div class="nav-item" onclick="goPage('config',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    CONFIG
+  </div>
+</nav>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon" id="m-icon">🏢</div>
+      <div>
+        <div class="modal-title" id="m-title">—</div>
+        <div class="modal-subtitle" id="m-sub">—</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid" id="m-grid"></div>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeModal()">FECHAR</button>
+        <button class="btn primary" onclick="closeModal()">VER AO VIVO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
