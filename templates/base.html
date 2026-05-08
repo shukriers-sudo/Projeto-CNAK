@@ -10,26 +10,57 @@
     <div class="brand">
         <img src="{{ url_for('static', filename='img/argos-logo.jpg') }}" alt="Argos Segurança" class="brand-logo">
     </div>
+
     <nav class="menu">
-        <a href="/" class="{% if request.path == '/' %}active{% endif %}"><span>⌂</span> Dashboard</a>
-        <a href="/usuarios" class="{% if request.path.startswith('/usuarios') %}active{% endif %}"><span>♙</span> Usuários</a>
-        <a href="/modulos" class="{% if request.path.startswith('/modulos') %}active{% endif %}"><span>⬡</span> Módulos</a>
-        <a href="/ambientes" class="{% if request.path.startswith('/ambientes') %}active{% endif %}"><span>▥</span> Ambientes</a>
+        <a href="/" class="{% if request.path == '/' %}active{% endif %}">
+            <span class="menu-icon">🏛️</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="/usuarios" class="{% if request.path.startswith('/usuarios') %}active{% endif %}">
+            <span class="menu-icon">👤</span>
+            <span>Usuários</span>
+        </a>
+
+        <a href="/modulos" class="{% if request.path.startswith('/modulos') %}active{% endif %}">
+            <span class="menu-icon">🧩</span>
+            <span>Módulos</span>
+        </a>
+
+        <a href="/ambientes" class="{% if request.path.startswith('/ambientes') %}active{% endif %}">
+            <span class="menu-icon">🏢</span>
+            <span>Ambientes</span>
+        </a>
     </nav>
+
     <div class="system-card">
-        <strong>Sistema Seguro</strong>
+        <strong>🛡️ Sistema Seguro</strong>
         <small>Todos os sistemas operacionais</small>
     </div>
+
     <div class="client-card">
         <p>Cliente: <strong>CNAK Vision</strong></p>
         <small>Versão 1.0.0</small>
     </div>
 </aside>
+
 <main class="main">
     <header class="topbar">
-        <div class="hamburger">☰</div>
-        <div class="admin"><span>☼</span><span>🔔</span><strong>AD</strong><span>Administrador</span></div>
+        <div class="admin">
+    <span>☼</span>
+    <span>🔔</span>
+
+    <div class="admin-user">
+        <strong>AD</strong>
+        <span>Administrador</span>
+    </div>
+
+    <a href="/logout" class="logout-btn">
+        ⎋ Sair
+    </a>
+</div>
     </header>
+
     {% block content %}{% endblock %}
 </main>
 </body>

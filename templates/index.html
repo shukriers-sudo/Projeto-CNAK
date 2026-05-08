@@ -11,16 +11,37 @@
         <img src="{{ url_for('static', filename='img/argos-logo.jpg') }}" alt="Argos Segurança">
     </div>
 </section>
-<section class="cards">
-    <div class="stat-card"><div class="stat-icon">♙</div><strong>{{ total_users }}</strong><span>Usuários cadastrados</span></div>
-    <div class="stat-card"><div class="stat-icon">⬡</div><strong>{{ total_modules }}</strong><span>Módulos cadastrados</span></div>
-    <div class="stat-card"><div class="stat-icon">▥</div><strong>{{ total_environments }}</strong><span>Ambientes cadastrados</span></div>
-</section>
-<section class="features">
-    <div><b>SEGURANÇA</b><span>Proteção avançada e controle total de acessos.</span></div>
-    <div><b>EFICIÊNCIA</b><span>Processos otimizados com alta performance.</span></div>
-    <div><b>INOVAÇÃO</b><span>Tecnologia de ponta com Inteligência Artificial.</span></div>
-    <div><b>CONFIANÇA</b><span>Tradição de 50 anos protegendo o que importa.</span></div>
+<div class="card">
+    <h3><span class="card-icon">👤</span> {{ total_users }} Usuários cadastrados</h3>
+</div>
+
+<div class="card">
+    <h3><span class="card-icon">🧩</span> {{ total_modules }} Módulos cadastrados</h3>
+</div>
+
+<div class="card">
+    <h3><span class="card-icon">🏢</span> {{ total_environments }} Ambientes cadastrados</h3>
+</div>
+<<section class="features">
+    <div class="feature-item seguranca">
+        <strong>SEGURANÇA</strong>
+        <span>Proteção avançada e controle total de acessos.</span>
+    </div>
+
+    <div class="feature-item eficiencia">
+        <strong>EFICIÊNCIA</strong>
+        <span>Processos otimizados com alta performance.</span>
+    </div>
+
+    <div class="feature-item inovacao">
+        <strong>INOVAÇÃO</strong>
+        <span>Tecnologia de ponta com Inteligência Artificial.</span>
+    </div>
+
+    <div class="feature-item confianca">
+        <strong>CONFIANÇA</strong>
+        <span>Tradição de 50 anos protegendo o que importa.</span>
+    </div>
 </section>
 <footer>© 2026 Argos Segurança AI | CNAK Vision. Todos os direitos reservados.</footer>
 {% endblock %}

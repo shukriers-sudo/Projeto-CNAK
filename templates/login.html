@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Acesso Restrito | Argos Segurança AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+
+    <div class="login-orb orb-one"></div>
+    <div class="login-orb orb-two"></div>
+
+    <main class="login-box login-premium">
+        <div class="login-shield">
+            <img src="{{ url_for('static', filename='img/argos-logo.jpg') }}" class="login-logo" alt="Argos Segurança">
+        </div>
+
+        <div class="login-header">
+            <span class="login-tag">ARGOS SECURITY AI</span>
+            <h2>Acesso Restrito</h2>
+            <p class="login-subtitle">CNAK Vision • Módulo 01 • Controle de Acesso</p>
+        </div>
+
+        {% if erro %}
+            <div class="alert">{{ erro }}</div>
+        {% endif %}
+
+        <form method="POST" class="login-form">
+            <div class="input-group">
+                <label>Usuário</label>
+                <input type="text" name="usuario" placeholder="Digite o usuário" required>
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="Digite a senha" required>
+            </div>
+
+            <button class="btn login-btn" type="submit">Entrar no Sistema</button>
+        </form>
+
+        <div class="login-footer">
+            <span>🛡️ Ambiente protegido por IA</span>
+            <small>Usuário: admin | Senha: 1234</small>
+        </div>
+    </main>
+
+</body>
+</html>

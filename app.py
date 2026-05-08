@@ -1,12 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import json
 from pathlib import Path
 from datetime import datetime
+from functools import wraps
 
 app = Flask(__name__)
+app.secret_key = "argos_cnak_modulo_01_seguro"
+
+USUARIO_PADRAO = "admin"
+SENHA_PADRAO = "1234"
+
 BASE_DIR = Path(__file__).resolve().parent
 DB_DIR = BASE_DIR / "database"
 DB_DIR.mkdir(exist_ok=True)
+
 DB = {
     "users": DB_DIR / "users.json",
     "modules": DB_DIR / "modules.json",
@@ -29,7 +36,38 @@ def save_data(key, data):
 def next_id(data):
     return max([item.get("id", 0) for item in data], default=0) + 1
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get("logado"):
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated_function
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    erro = None
+
+    if request.method == "POST":
+        usuario = request.form.get("usuario", "").strip()
+        senha = request.form.get("senha", "").strip()
+
+        if usuario == USUARIO_PADRAO and senha == SENHA_PADRAO:
+            session["logado"] = True
+            session["usuario"] = usuario
+            return redirect(url_for("dashboard"))
+        else:
+            erro = "Usuário ou senha inválidos."
+
+    return render_template("login.html", erro=erro)
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
 @app.route("/")
+@login_required
 def dashboard():
     return render_template(
         "index.html",
@@ -39,6 +77,7 @@ def dashboard():
     )
 
 @app.route("/usuarios", methods=["GET", "POST"])
+@login_required
 def usuarios():
     items = load_data("users")
     if request.method == "POST":
@@ -55,11 +94,13 @@ def usuarios():
     return render_template("usuarios.html", items=items)
 
 @app.route("/usuarios/excluir/<int:item_id>")
+@login_required
 def excluir_usuario(item_id):
     save_data("users", [item for item in load_data("users") if item.get("id") != item_id])
     return redirect(url_for("usuarios"))
 
 @app.route("/modulos", methods=["GET", "POST"])
+@login_required
 def modulos():
     items = load_data("modules")
     if request.method == "POST":
@@ -76,11 +117,13 @@ def modulos():
     return render_template("modulos.html", items=items)
 
 @app.route("/modulos/excluir/<int:item_id>")
+@login_required
 def excluir_modulo(item_id):
     save_data("modules", [item for item in load_data("modules") if item.get("id") != item_id])
     return redirect(url_for("modulos"))
 
 @app.route("/ambientes", methods=["GET", "POST"])
+@login_required
 def ambientes():
     items = load_data("environments")
     if request.method == "POST":
@@ -98,9 +141,11 @@ def ambientes():
     return render_template("ambientes.html", items=items)
 
 @app.route("/ambientes/excluir/<int:item_id>")
+@login_required
 def excluir_ambiente(item_id):
     save_data("environments", [item for item in load_data("environments") if item.get("id") != item_id])
     return redirect(url_for("ambientes"))
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
