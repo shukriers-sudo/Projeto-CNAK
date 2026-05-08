@@ -1,1 +1,29 @@
-[]
+[
+    {
+        "id": 1,
+        "nome": "Prédio Central",
+        "tipo": "Administrativo",
+        "localizacao": "Bloco A - Campus Principal",
+        "nivel_risco": "Médio",
+        "status": "Ativo",
+        "criado_em": "08/05/2026 13:27"
+    },
+    {
+        "id": 2,
+        "nome": "Sala de Monitoramento",
+        "tipo": "Operacional",
+        "localizacao": "Bloco A - 1º Andar",
+        "nivel_risco": "Alto",
+        "status": "Ativo",
+        "criado_em": "08/05/2026 13:27"
+    },
+    {
+        "id": 3,
+        "nome": "Datacenter Principal",
+        "tipo": "Infraestrutura Crítica",
+        "localizacao": "Bloco Técnico - Área Restrita",
+        "nivel_risco": "Crítico",
+        "status": "Ativo",
+        "criado_em": "08/05/2026 13:32"
+    }
+]

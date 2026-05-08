@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "equipamento": "Câmera Intelbras VIP 3240",
+        "ambiente": "Sala de Monitoramento",
+        "responsavel": "Equipe de Segurança",
+        "status": "Operacional",
+        "criado_em": "08/05/2026 13:38"
+    },
+    {
+        "id": 2,
+        "equipamento": "Notebook Dell Latitude 5440",
+        "ambiente": "Prédio Central",
+        "responsavel": "Coordenação de TI",
+        "status": "Operacional",
+        "criado_em": "08/05/2026 13:39"
+    }
+]

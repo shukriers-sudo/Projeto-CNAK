@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Distribuição{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div>
+        <p class="eyebrow">Módulo 02</p>
+        <h1>Distribuição Inteligente de Equipamentos</h1>
+        <p class="subtitle">
+            Monitoramento da alocação operacional dos ativos nos ambientes estratégicos.
+        </p>
+    </div>
+</section>
+
+<div class="dashboard-grid">
+
+    <div class="card metric-card">
+        <span>Total Distribuído</span>
+        <strong>{{ items|length }}</strong>
+        <p>Equipamentos vinculados</p>
+    </div>
+
+    <div class="card metric-card">
+        <span>Ambientes</span>
+        <strong>Monitorados</strong>
+        <p>Controle em tempo real</p>
+    </div>
+
+    <div class="card metric-card">
+        <span>Status Operacional</span>
+        <strong>Ativo</strong>
+        <p>Rede operacional integrada</p>
+    </div>
+
+</div>
+
+<div class="content-grid">
+
+    <div class="card form-card">
+
+        <h2>Nova Distribuição</h2>
+
+        <form method="POST">
+
+            <label>Equipamento</label>
+            <input type="text" name="equipamento" placeholder="Ex: Notebook Dell Latitude" required>
+
+            <label>Ambiente</label>
+            <input type="text" name="ambiente" placeholder="Ex: Sala de Monitoramento">
+
+            <label>Responsável</label>
+            <input type="text" name="responsavel" placeholder="Ex: Equipe de Segurança">
+
+            <label>Status</label>
+            <select name="status">
+                <option>Operacional</option>
+                <option>Em manutenção</option>
+                <option>Offline</option>
+                <option>Reserva</option>
+            </select>
+
+            <button type="submit">
+                Registrar Distribuição
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card table-card">
+
+        <h2>Painel de Distribuição</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipamento</th>
+                    <th>Ambiente</th>
+                    <th>Responsável</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in items %}
+
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.equipamento }}</td>
+                    <td>{{ item.ambiente }}</td>
+                    <td>{{ item.responsavel }}</td>
+
+                    <td>
+                        <span class="status-badge">
+                            {{ item.status }}
+                        </span>
+                    </td>
+
+                    <td>{{ item.criado_em }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="6" class="empty-state">
+                        Nenhuma distribuição registrada.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "id": 1,
+        "nome": "Controle de Acesso",
+        "descricao": "Gerenciamento de usuários, autenticação e permissões operacionais.",
+        "nivel_acesso": "Administrador",
+        "status": "Ativo",
+        "criado_em": "08/05/2026 13:21"
+    },
+    {
+        "id": 2,
+        "nome": "Gestão de Equipamentos",
+        "descricao": "Controle patrimonial, cadastro e distribuição inteligente de ativos.",
+        "nivel_acesso": "Administrador / Operador",
+        "status": "Ativo",
+        "criado_em": "08/05/2026 13:21"
+    }
+]

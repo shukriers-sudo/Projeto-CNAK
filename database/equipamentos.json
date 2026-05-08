@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "nome": "Câmera Intelbras VIP 3240",
+        "tipo": "Câmera IP",
+        "patrimonio": "ARG-2026-001",
+        "status": "Ativo",
+        "ambiente": "Sala de Monitoramento",
+        "responsavel": "Equipe de Segurança",
+        "criado_em": "08/05/2026 13:34"
+    },
+    {
+        "id": 2,
+        "nome": "Notebook Dell Latitude 5440",
+        "tipo": "Notebook",
+        "patrimonio": "ARG-2026-002",
+        "status": "Ativo",
+        "ambiente": "Prédio Central",
+        "responsavel": "Coordenação de TI",
+        "criado_em": "08/05/2026 13:35"
+    }
+]

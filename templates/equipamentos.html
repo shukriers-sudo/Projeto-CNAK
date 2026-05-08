@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Equipamentos{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div>
+        <p class="eyebrow">Módulo 02</p>
+        <h1>Gerenciamento Inteligente de Equipamentos</h1>
+        <p class="subtitle">
+            Controle patrimonial, status operacional, ambiente vinculado e responsável técnico.
+        </p>
+    </div>
+</section>
+
+<div class="dashboard-grid">
+    <div class="card metric-card">
+        <span>Total de Equipamentos</span>
+        <strong>{{ items|length }}</strong>
+        <p>Ativos cadastrados no sistema</p>
+    </div>
+
+    <div class="card metric-card">
+        <span>Operação</span>
+        <strong>ARGOS</strong>
+        <p>Gestão integrada e modular</p>
+    </div>
+
+    <div class="card metric-card">
+        <span>Status</span>
+        <strong>Online</strong>
+        <p>Módulo em funcionamento</p>
+    </div>
+</div>
+
+<div class="content-grid">
+
+    <div class="card form-card">
+        <h2>Novo Equipamento</h2>
+
+        <form method="POST">
+            <label>Nome do equipamento</label>
+            <input type="text" name="nome" placeholder="Ex: Câmera IP Intelbras" required>
+
+            <label>Tipo</label>
+            <input type="text" name="tipo" placeholder="Ex: Câmera, Notebook, Sensor, Roteador" required>
+
+            <label>Nº Patrimônio</label>
+            <input type="text" name="patrimonio" placeholder="Ex: ARG-2026-001" required>
+
+            <label>Status</label>
+            <select name="status">
+                <option>Ativo</option>
+                <option>Manutenção</option>
+                <option>Inativo</option>
+                <option>Reserva</option>
+            </select>
+
+            <label>Ambiente</label>
+            <input type="text" name="ambiente" placeholder="Ex: Prédio Central - Sala 01">
+
+            <label>Responsável</label>
+            <input type="text" name="responsavel" placeholder="Ex: Coordenação de TI">
+
+            <button type="submit">Cadastrar Equipamento</button>
+        </form>
+    </div>
+
+    <div class="card table-card">
+        <h2>Inventário Operacional</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipamento</th>
+                    <th>Tipo</th>
+                    <th>Patrimônio</th>
+                    <th>Status</th>
+                    <th>Ambiente</th>
+                    <th>Responsável</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.tipo }}</td>
+                    <td>{{ item.patrimonio }}</td>
+                    <td>
+                        <span class="status-badge">{{ item.status }}</span>
+                    </td>
+                    <td>{{ item.ambiente }}</td>
+                    <td>{{ item.responsavel }}</td>
+                    <td>
+                        <a class="delete-link" href="{{ url_for('excluir_equipamento', item_id=item.id) }}">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" class="empty-state">
+                        Nenhum equipamento cadastrado ainda.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

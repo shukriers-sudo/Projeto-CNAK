@@ -31,6 +31,16 @@
             <span class="menu-icon">🏢</span>
             <span>Ambientes</span>
         </a>
+
+     <a href="/equipamentos" class="{% if request.path.startswith('/equipamentos') %}active{% endif %}">
+    <span class="menu-icon">⚙️</span>
+    <span>Equipamentos</span>
+</a>
+
+<a href="/distribuicao" class="{% if request.path.startswith('/distribuicao') %}active{% endif %}">
+    <span class="menu-icon">🔄</span>
+    <span>Distribuição</span>
+</a>   
     </nav>
 
     <div class="system-card">
