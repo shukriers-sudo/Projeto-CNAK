@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="dashboard-grid">
+
+    <div class="card">
+        <small>Áreas Críticas</small>
+        <h2>12</h2>
+        <p>Mapeamento inteligente</p>
+    </div>
+
+    <div class="card">
+        <small>Fluxo Detectado</small>
+        <h2>3.421</h2>
+        <p>Movimentações analisadas</p>
+    </div>
+
+    <div class="card">
+        <small>IA Operacional</small>
+        <h2>ATIVA</h2>
+        <p>Análise comportamental</p>
+    </div>
+
+</section>
+
+<section class="table-section">
+
+    <h1>Mapa de Calor Operacional</h1>
+
+    <div class="heatmap-grid">
+
+        <div class="heat low">
+            Entrada Leste
+        </div>
+
+        <div class="heat medium">
+            Setor Administrativo
+        </div>
+
+        <div class="heat high">
+            Estacionamento Norte
+        </div>
+
+        <div class="heat critical">
+            Área Restrita
+        </div>
+
+    </div>
+
+</section>
+<
+<section class="table-section">
+
+    <h1>Análise Inteligente ARGOS IA</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Setor</th>
+                <th>Movimentação</th>
+                <th>Risco</th>
+                <th>Status IA</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Entrada Principal</td>
+                <td>Alta</td>
+                <td>Médio</td>
+                <td><span class="status online">Monitorado</span></td>
+            </tr>
+
+            <tr>
+                <td>Estacionamento Norte</td>
+                <td>Crítica</td>
+                <td>Alto</td>
+                <td><span class="status online">Analisando</span></td>
+            </tr>
+
+            <tr>
+                <td>Bloco Administrativo</td>
+                <td>Moderada</td>
+                <td>Baixo</td>
+                <td><span class="status online">Seguro</span></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+{% endblock %}

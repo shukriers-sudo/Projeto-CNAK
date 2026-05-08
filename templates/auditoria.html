@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="dashboard-grid">
+
+    <div class="card">
+        <small>Eventos Registrados</small>
+        <h2>2.847</h2>
+        <p>Logs operacionais</p>
+    </div>
+
+    <div class="card">
+        <small>Acessos Hoje</small>
+        <h2>184</h2>
+        <p>Controle em tempo real</p>
+    </div>
+
+    <div class="card">
+        <small>Status Sistema</small>
+        <h2>Seguro</h2>
+        <p>Monitoramento ativo</p>
+    </div>
+
+</section>
+
+<section class="table-section">
+    <h1>Central de Auditoria</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Ação</th>
+                <th>Módulo</th>
+                <th>Status</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Administrador</td>
+                <td>Login realizado</td>
+                <td>Controle de Acesso</td>
+                <td><span class="status online">Validado</span></td>
+                <td>08/05/2026 16:10</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Equipe TI</td>
+                <td>Atualização sistema</td>
+                <td>Monitoramento</td>
+                <td><span class="status online">Concluído</span></td>
+                <td>08/05/2026 16:12</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Operador ARGOS</td>
+                <td>Distribuição equipamento</td>
+                <td>Equipamentos</td>
+                <td><span class="status online">Executado</span></td>
+                <td>08/05/2026 16:15</td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}

@@ -318,10 +318,15 @@ def excluir_distribuicao(item_id):
 def monitoramento():
     return render_template("monitoramento.html")
 
-
+@app.route("/auditoria")
+def auditoria():
+    return render_template("auditoria.html")
 # =========================
 # EXECUÇÃO
 # =========================
-
+@app.route("/analise")
+def analise():
+    return render_template("analise.html")
 if __name__ == "__main__":
     app.run(debug=True)
+    

@@ -46,8 +46,16 @@
     <span>Monitoramento</span>
 </a>
 
-</nav>
+<a href="/auditoria" class="{% if request.path.startswith('/auditoria') %}active{% endif %}">
+    <span class="menu-icon">📋</span>
+    <span>Auditoria</span>
+</a>
 
+<a href="/analise" class="{% if request.path.startswith('/analise') %}active{% endif %}">
+    <span class="menu-icon">📊</span>
+    <span>Análise IA</span>
+</a>
+</nav>
 
     <div class="client-card">
         <p>Cliente: <strong>CNAK Vision</strong></p>

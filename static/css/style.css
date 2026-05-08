@@ -282,9 +282,9 @@ footer,.footer{
 }
 
 .menu a.active{
-    background:linear-gradient(135deg,rgba(255,157,47,.25),rgba(255,255,255,.04));
-    border-color:rgba(255,157,47,.45);
-    box-shadow:0 0 24px rgba(255,157,47,.18);
+    border:1px solid rgba(255,140,0,0.4);
+    background:rgba(255,140,0,0.08);
+   box-shadow:0 0 10px rgba(255,140,0,0.05);
 }
 
 /* ÍCONES DOS CARDS */
@@ -802,18 +802,18 @@ tbody tr:hover{
 }
 
 .card span{
-    color:#fff;
+    color:#d6d6d6;
     font-size:14px;
 }
 
 .card h2{
-    color:#fff;
+    color:#f8c471;
     font-size:42px;
     margin:10px 0;
 }
 
 .card p{
-    color:#bbb;
+    color:#b8b8b8;
     font-size:14px;
 }
 
@@ -829,8 +829,9 @@ tbody tr:hover{
 }
 
 .table-header h2{
-    color:#fff;
+    color:#f8c471;
     font-size:32px;
+    letter-spacing:1px;
 }
 
 .status{
@@ -844,3 +845,15 @@ tbody tr:hover{
     background:#00aa55;
     color:#fff;
 }
+
+th{
+    color:#f8c471;
+}
+
+td{
+    color:#cfcfcf;
+}
+h1{
+    color:#f5deb3;
+}
+
