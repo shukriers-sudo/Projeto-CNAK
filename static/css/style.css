@@ -786,3 +786,61 @@ tbody tr:hover{
     }
 
 }
+.top-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:rgba(10,10,10,0.7);
+    border:1px solid rgba(255,140,0,0.2);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 20px rgba(255,140,0,0.08);
+}
+
+.card span{
+    color:#fff;
+    font-size:14px;
+}
+
+.card h2{
+    color:#fff;
+    font-size:42px;
+    margin:10px 0;
+}
+
+.card p{
+    color:#bbb;
+    font-size:14px;
+}
+
+.table-section{
+    background:rgba(10,10,10,0.6);
+    border-radius:20px;
+    padding:25px;
+    border:1px solid rgba(255,140,0,0.2);
+}
+
+.table-header{
+    margin-bottom:20px;
+}
+
+.table-header h2{
+    color:#fff;
+    font-size:32px;
+}
+
+.status{
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.status.ativo{
+    background:#00aa55;
+    color:#fff;
+}

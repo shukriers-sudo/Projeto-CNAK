@@ -41,12 +41,13 @@
     <span class="menu-icon">🔄</span>
     <span>Distribuição</span>
 </a>   
-    </nav>
+<a href="/monitoramento" class="{% if request.path.startswith('/monitoramento') %}active{% endif %}">
+    <span class="menu-icon">📹</span>
+    <span>Monitoramento</span>
+</a>
 
-    <div class="system-card">
-        <strong>🛡️ Sistema Seguro</strong>
-        <small>Todos os sistemas operacionais</small>
-    </div>
+</nav>
+
 
     <div class="client-card">
         <p>Cliente: <strong>CNAK Vision</strong></p>

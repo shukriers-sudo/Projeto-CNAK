@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="top-cards">
+
+    <div class="card">
+        <span>Prédios Monitorados</span>
+        <h2>08</h2>
+        <p>Controle central integrado</p>
+    </div>
+
+    <div class="card">
+        <span>Câmeras Ativas</span>
+        <h2>124</h2>
+        <p>Monitoramento em tempo real</p>
+    </div>
+
+    <div class="card">
+        <span>Estacionamento</span>
+        <h2>Online</h2>
+        <p>Fluxo operacional seguro</p>
+    </div>
+
+</div>
+
+<div class="table-section">
+
+    <div class="table-header">
+        <h2>Monitoramento Operacional</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Local</th>
+                <th>Status</th>
+                <th>Câmeras</th>
+                <th>Responsável</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Prédio Central</td>
+                <td><span class="status ativo">Online</span></td>
+                <td>42</td>
+                <td>Central ARGOS</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Estacionamento Norte</td>
+                <td><span class="status ativo">Online</span></td>
+                <td>18</td>
+                <td>Equipe Segurança</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Bloco Administrativo</td>
+                <td><span class="status ativo">Online</span></td>
+                <td>27</td>
+                <td>Coordenação TI</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
